@@ -9,27 +9,26 @@ namespace GameLibrary.Controllers;
 [Route("api/[controller]")]
 public class GameController : ControllerBase
 {
+    private GameService _gameService = new GameService();
+
     [HttpGet("{id:int}")]
     public Game GetGameById(int id)
     {
-        GameService gService = new GameService();
-        var game = gService.GetGameById(id);
+        var game = _gameService.GetGameById(id);
         return game;
     }
 
     [HttpGet("title/{title}")]
     public Game GetGameByTitle(string title)
     {
-        GameService gService = new GameService();
-        var game = gService.GetGameByTitle(title);
+        var game = _gameService.GetGameByTitle(title);
         return game;
     }
 
     [HttpPut("upc/{upc}")]
     public async Task<Game> AddGameByUPC(string upc)
     {
-        GameService gService = new GameService();
-        var game = await gService.CreateGameWithUPC(upc);
+        var game = await _gameService.CreateGameWithUPC(upc);
         return game;
     }
 }

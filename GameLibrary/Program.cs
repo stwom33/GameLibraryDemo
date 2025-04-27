@@ -22,10 +22,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// app.MapControllerRoute(
-//     name: "default",
-//     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 // set up sample in-memory database
 LibraryContext.SeedSampleData();
 
