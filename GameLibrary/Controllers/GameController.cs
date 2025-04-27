@@ -12,23 +12,24 @@ public class GameController : ControllerBase
     [HttpGet("{id:int}")]
     public Game GetGameById(int id)
     {
-        // GET game from database
         GameService gService = new GameService();
-
         var game = gService.GetGameById(id);
-
         return game;
     }
 
     [HttpGet("title/{title}")]
     public Game GetGameByTitle(string title)
     {
-        return new Game {
-            ID = 432,
-            Title = title,
-            GameSystem = GameSystems.Genesis,
-            ReleaseDate = new DateTime(1992, 12, 15),
-            Price = 34.23
-        };
+        GameService gService = new GameService();
+        var game = gService.GetGameByTitle(title);
+        return game;
+    }
+
+    [HttpPut("upc/{upc}")]
+    public async Task<Game> AddGameByUPC(string upc)
+    {
+        GameService gService = new GameService();
+        var game = await gService.CreateGameWithUPC(upc);
+        return game;
     }
 }

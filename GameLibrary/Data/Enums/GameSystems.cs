@@ -1,6 +1,7 @@
 namespace GameLibrary.Enums;
 public enum GameSystems
 {
+    Other = -1,
     NES = 0,
     SuperNintendo = 1,
     MasterSystem = 2,

@@ -1,5 +1,6 @@
 
 using GameLibrary.Infrastructure;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace GameLibrary.APIs;
@@ -38,12 +39,16 @@ public class PriceChartingAPIClient : IPriceChartingAPIClient
             var jsonResponse = await response.Content.ReadAsStringAsync();
             Console.WriteLine($"{jsonResponse}\n");
 
-            return new JObject(jsonResponse);
+            return JObject.Parse(jsonResponse);
         }
         catch(Exception ex)
         {
-            //log the ex
-            return new JObject("{\"status\": \"error\"}");
+            //TODO: log the ex
+            Dictionary<string, string> err = new Dictionary<string, string>
+            {
+                {"status", "error"}
+            };
+            return JObject.Parse(JsonConvert.SerializeObject(err));
         }
 
     }
