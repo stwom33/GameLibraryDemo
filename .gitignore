@@ -1,0 +1,6 @@
+GameLibrary/bin/**
+GameLibrary/obj/**
+
+GameLibrary.Tests/bin/**
+GameLibrary.Tests/obj/**
+
